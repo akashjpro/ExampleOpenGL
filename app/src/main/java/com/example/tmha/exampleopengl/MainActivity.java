@@ -9,6 +9,8 @@ import com.example.tmha.exampleopengl.lesson1.TriangleColorActivity;
 import com.example.tmha.exampleopengl.lesson2.LessonTwoActivity;
 import com.example.tmha.exampleopengl.lesson3.LessonThreeActivity;
 import com.example.tmha.exampleopengl.lesson4.LessonFourActivity;
+import com.example.tmha.exampleopengl.lesson5.LessonFiveActivity;
+import com.example.tmha.exampleopengl.lesson6.LessonSixActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,5 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void lessonFourClick(View view) {
         startActivity(new Intent(this, LessonFourActivity.class));
+    }
+
+    public void lessonFiveClick(View view) {
+        startActivity(new Intent(this, LessonFiveActivity.class));
+    }
+
+    public void lessonSixClick(View view) {
+        startActivity(new Intent(this, LessonSixActivity.class));
     }
 }
