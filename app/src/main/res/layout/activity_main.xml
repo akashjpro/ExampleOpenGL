@@ -44,4 +44,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:onClick="lessonSevenClick"
+        android:text="Vertex Buffer Objects"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="lessonEightClick"
+        android:text="Index Buffer Objects "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>
