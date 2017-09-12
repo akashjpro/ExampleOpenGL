@@ -6,16 +6,23 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.example.tmha.exampleopengl.R;
 
 public class LessonFourActivity extends AppCompatActivity {
 
     private GLSurfaceView mGLSurfaceView;
+    private LessonFourRenderer mLessonFourRenderer;
+    private int mIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        mGLSurfaceView = new GLSurfaceView(this);
+        setContentView(R.layout.activity_lesson_four);
+        //mGLSurfaceView = new GLSurfaceView(this);
+        mGLSurfaceView = (GLSurfaceView) findViewById(R.id.gl_surface_view);
+        mLessonFourRenderer = new LessonFourRenderer(this);
 
         // Check if the system supports OpenGL ES 2.0.
         final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -28,7 +35,7 @@ public class LessonFourActivity extends AppCompatActivity {
             mGLSurfaceView.setEGLContextClientVersion(2);
 
             // Set the renderer to our demo renderer, defined below.
-            mGLSurfaceView.setRenderer(new LessonFourRenderer(this));
+            mGLSurfaceView.setRenderer(mLessonFourRenderer);
         }
         else
         {
@@ -37,7 +44,25 @@ public class LessonFourActivity extends AppCompatActivity {
             return;
         }
 
-        setContentView(mGLSurfaceView);
+        mGLSurfaceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mIndex = mLessonFourRenderer.getmIndex();
+                if ( mIndex > 4){
+                    mIndex = 0;
+                }else {
+                    mIndex++;
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mLessonFourRenderer.changeDrawable(mIndex);
+                    }
+                });
+            }
+        });
+
+       // setContentView(mGLSurfaceView);
     }
 
     @Override

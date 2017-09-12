@@ -29,6 +29,8 @@ public class LessonFourRenderer implements GLSurfaceView.Renderer
 
     private final Context mActivityContext;
 
+    private int mIndex = 0;
+
     /**
      * Store the model matrix. This matrix is used to move models from object space (where each model can be thought
      * of being located at the center of the universe) to world space.
@@ -122,7 +124,6 @@ public class LessonFourRenderer implements GLSurfaceView.Renderer
     public LessonFourRenderer(final Context activityContext)
     {
         mActivityContext = activityContext;
-
         // Define points for a cube.
 
         // X, Y, Z
@@ -376,6 +377,7 @@ public class LessonFourRenderer implements GLSurfaceView.Renderer
     @Override
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config)
     {
+
         // Set the background clear color to black.
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -453,6 +455,30 @@ public class LessonFourRenderer implements GLSurfaceView.Renderer
     @Override
     public void onDrawFrame(GL10 glUnused)
     {
+
+        switch (mIndex){
+            case 0:
+                mTextureDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.bumpy_bricks_public_domain);
+                break;
+
+            case 1:
+                mTextureDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.picture1);
+                break;
+
+            case 2:
+                mTextureDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.picture2);
+                break;
+
+            case 3:
+                mTextureDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.picture3);
+                break;
+
+            case 4:
+                mTextureDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.picture4);
+                break;
+        }
+
+
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
         // Do a complete rotation every 10 seconds.
@@ -596,4 +622,13 @@ public class LessonFourRenderer implements GLSurfaceView.Renderer
         // Draw the point.
         GLES20.glDrawArrays(GLES20.GL_POINTS, 0, 1);
     }
+
+    public void changeDrawable(int index){
+        mIndex = index;
+    }
+
+    public int getmIndex() {
+        return mIndex;
+    }
+
 }
